@@ -6,12 +6,15 @@ def portfolio_cost(filename):
     with open(filename, 'rt') as f:
          headers = next(f).split(',')
          for line in f:
-             row = line.split()
-             for i in range(len(row[0])):
-                 start = row[0].index(',')+1
-                 if row[0][i]==',':
-                     end = i
-             total_cost = total_cost+ (int(row[0][start:end]) * float(row[0][end+1:]))
+             row = line.split(',')
+             try:
+                 num_share = int(row[1])
+                 share_price  = float(row[2])
+             except ValueError:
+                 print("some fields were missing, replaced with 0")
+                 num_share = 0
+                 share_price = 0                     
+             total_cost = total_cost+ (num_share * share_price)
     return total_cost
 cost  = portfolio_cost('Data/portfolio.csv')
 print('Total cost:', cost)
