@@ -11,6 +11,7 @@ extra_payment_end_month = 108
 extra_payment = 1000
 num_of_months = 0
 
+print(f'{"***Number of Months***":>10} {"***Total Payment Completed***":>10} {"***Remaining Principal***"}')
 while principal > 0:
     num_of_months +=1
 
@@ -25,7 +26,8 @@ while principal > 0:
     if principal <0:
         num_of_months -=1
         break
-    print(num_of_months,round(total_paid,2),round(principal,2))
+    print(f'{num_of_months:>11d} {round(total_paid,2):>28}{round(principal,2):>29}')
 
-print('Total paid',round(total_paid,2))
-print('Months', num_of_months)
+print()
+print(f'{"***** Total paid ==>":>40} {round(total_paid,2)} {"*****"}')
+print(f'{"***** Total Months ==>":>42} {num_of_months} {"*****"}')
