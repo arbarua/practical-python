@@ -1,6 +1,7 @@
 # pcost.py
 #
 # Exercise 1.27
+import sys
 def portfolio_cost(filename): 
     total_cost = 0
     with open(filename, 'rt') as f:
@@ -16,6 +17,11 @@ def portfolio_cost(filename):
                  share_price = 0                     
              total_cost = total_cost+ (num_share * share_price)
     return total_cost
-cost  = portfolio_cost('Data/portfolio.csv')
+
+if len(sys.argv) == 2:
+    filename = sys.argv[1]
+else:
+    filename = 'Data/portfolio.csv'
+cost  = portfolio_cost(filename)
 print('Total cost:', cost)
 
