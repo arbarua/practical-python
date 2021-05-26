@@ -6,13 +6,13 @@ def portfolio_cost(filename):
     total_cost = 0
     with open(filename, 'rt') as f:
          headers = next(f).split(',')
-         for line in f:
+         for line_no,line in enumerate(f, start = 1):
              row = line.split(',')
              try:
                  num_share = int(row[1])
                  share_price  = float(row[2])
              except ValueError:
-                 print("some fields were missing, replaced with 0")
+                 print(f'row no #{line_no}: Contains missing values: [{line}]: replaced with 0s')
                  num_share = 0
                  share_price = 0                     
              total_cost = total_cost+ (num_share * share_price)
