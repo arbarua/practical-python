@@ -43,3 +43,19 @@ elif total_prices_cost < total_portfolio_cost:
     print(f"Loss: {total_portfolio_cost - total_prices_cost:.2f}")
 else:
     print("No Gain, No Loss")
+
+
+def make_report(portfolio, prices):
+    report = []
+    for s in portfolio:
+        report.append((s['name'], s['shares'], prices[s['name']], prices[s['name']]-s['price']))
+    return report
+
+report = make_report(portfolio, prices)
+
+print(f'{"Name":>10} {"Shares":>10} {"price":>10} {"Change":>10}')#make this comment to produce exercise 2.9
+print("_"*10, "_"*10, "_"*10, "_"*10)#make this comment to produce exercise 2.9
+for r in report:
+    #print(r) "remove the comment marker from this line to produce exercise 2.9 and remove this statment within double quotation"
+    print(f'{r[0]:>10s} {r[1]:>10d} {r[2]:>10.2f} {r[3]:>10.2f}')#make this comment to produce exercise 2.9
+
