@@ -58,5 +58,6 @@ print(f'{"Name":>10} {"Shares":>10} {"price":>10} {"Change":>10}')#make this com
 print("_"*10, "_"*10, "_"*10, "_"*10)#make this comment to produce exercise 2.9
 for r in report:
     #print(r) "remove the comment marker from this line to produce exercise 2.9 and remove this statment within double quotation"
-    print(f'{r[0]:>10s} {r[1]:>10d} {r[2]:>10.2f} {r[3]:>10.2f}')#make this comment to produce exercise 2.9
+    with_dollar = "$"+str(round(r[2],2))# dollar sign added with r[2] = share price
+    print(f'{r[0]:>10s} {r[1]:>10d} {with_dollar:>10} {r[3]:>10.2f}')#make this comment to produce exercise 2.9
 
