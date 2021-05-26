@@ -1,6 +1,6 @@
 # report.py
 #
-# Exercise 2.7
+# Exercise 2.7 - 2.12
 import csv
 
 def read_portfolio(filename):
@@ -53,6 +53,7 @@ def make_report(portfolio, prices):
 
 report = make_report(portfolio, prices)
 
+#Header added while completing exercise 2.9 and 2.10 so no need to add separately for exercise 2.11
 print(f'{"Name":>10} {"Shares":>10} {"price":>10} {"Change":>10}')#make this comment to produce exercise 2.9
 print("_"*10, "_"*10, "_"*10, "_"*10)#make this comment to produce exercise 2.9
 for r in report:
