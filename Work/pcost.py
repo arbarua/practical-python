@@ -2,15 +2,17 @@
 #
 # Exercise 1.27
 import sys
+import csv
 def portfolio_cost(filename): 
     total_cost = 0
     with open(filename, 'rt') as f:
-         headers = next(f).split(',')
-         for line_no,line in enumerate(f, start = 1):
-             row = line.split(',')
+         rows = csv.reader(f)
+         headers = next(rows)
+         for line_no,line in enumerate(rows, start = 1):
+             record = dict(zip(headers, line))
              try:
-                 num_share = int(row[1])
-                 share_price  = float(row[2])
+                 num_share = int(record['shares'])
+                 share_price  = float(record['price'])
              except ValueError:
                  print(f'row no #{line_no}: Contains missing values: [{line}]: replaced with 0s')
                  num_share = 0
