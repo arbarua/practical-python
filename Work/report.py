@@ -30,9 +30,9 @@ def calc_prices_cost(price_dict, portfolio_list):
 def print_gain_loss(prices_cost, portfolio_cost):
     '''prints if there is gain or loss'''
     if prices_cost > portfolio_cost:
-        print(f"Gain: {total_prices_cost - total_portfolio_cost:.2f}")
+        print(f"Gain: {prices_cost - portfolio_cost:.2f}")
     elif prices_cost < portfolio_cost:
-        print(f"Loss: {total_portfolio_cost - total_prices_cost:.2f}")
+        print(f"Loss: {portfolio_cost - prices_cost:.2f}")
     else:
         print("No Gain, No Loss")
 
@@ -50,7 +50,7 @@ def read_portfolio(filename):
 def read_prices(filename):
     '''reads file containing the prices of the shares and put the components in a dictionary'''
     prices = {}
-    f = open('Data/prices.csv', 'r')
+    f = open(filename, 'r')
     rows = csv.reader(f)
     for line_no,row in enumerate(rows, start = 1):
         if row != []:
@@ -64,14 +64,18 @@ def make_report(portfolio, prices):
         report.append((s['name'], int(s['shares']), float(prices[s['name']]), float(prices[s['name']])-float(s['price'])))
     return report
 
-portfolio = read_portfolio('Data/portfoliodate.csv')
-prices = read_prices('Data/prices.csv')
-total_portfolio_cost = calc_portfolio_cost(portfolio)
-total_prices_cost = calc_prices_cost(prices, portfolio)
-print(total_prices_cost, total_portfolio_cost)
-print_gain_loss(total_prices_cost, total_portfolio_cost)
-report = make_report(portfolio, prices)
-print_report(report)
+def portfolio_report(portfolio_filename, prices_filename):
+    '''calculates portfolio report from files'''
+    portfolio = read_portfolio(portfolio_filename)
+    prices = read_prices(prices_filename)
+    total_portfolio_cost = calc_portfolio_cost(portfolio)
+    total_prices_cost = calc_prices_cost(prices, portfolio)
+    print(total_prices_cost, total_portfolio_cost)
+    print_gain_loss(total_prices_cost, total_portfolio_cost)
+    report = make_report(portfolio, prices)
+    print_report(report)
+
+portfolio_report('Data/portfolio.csv', 'Data/prices.csv')
 
 '''#Header added while completing exercise 2.9 and 2.10 so no need to add separately for exercise 2.11
 print(f'{"Name":>10} {"Shares":>10} {"price":>10} {"Change":>10}')#make this comment to produce exercise 2.9
