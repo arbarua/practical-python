@@ -2,7 +2,7 @@
 #
 # Exercise 2.7 - 2.12
 import csv
-
+import fileparse
 def print_report(report_name):
     '''prints share names, their prices and change in their prices'''
     #Header added while completing exercise 2.9 and 2.10 so no need to add separately for exercise 2.11
@@ -38,24 +38,27 @@ def print_gain_loss(prices_cost, portfolio_cost):
 
 def read_portfolio(filename):
     '''reads porfolio file and make a list with the components in the file'''
-    portfolio = []
+    '''portfolio = []
     with open(filename, 'rt') as f:
          rows = csv.reader(f)
          headers = next(rows)
          for line_no, line in enumerate(rows, start = 1):
              record = dict(zip(headers, line))
-             portfolio.append(record)
+             portfolio.append(record)'''
+    portfolio = fileparse.parse_csv(filename, select = ['name', 'shares', 'price'], types = [str, int, float])         
     return portfolio
 
 def read_prices(filename):
     '''reads file containing the prices of the shares and put the components in a dictionary'''
-    prices = {}
+    '''prices = {}
     f = open(filename, 'r')
     rows = csv.reader(f)
     for line_no,row in enumerate(rows, start = 1):
         if row != []:
-             prices[row[0]] = float(row[1])
+             prices[row[0]] = float(row[1])'''
+    prices = dict(fileparse.parse_csv(filename, types = [str, float], has_headers = False))
     return prices
+    
 
 def make_report(portfolio, prices):
     '''make a report list with name, share cost, share price and changes'''
@@ -70,7 +73,7 @@ def portfolio_report(portfolio_filename, prices_filename):
     prices = read_prices(prices_filename)
     total_portfolio_cost = calc_portfolio_cost(portfolio)
     total_prices_cost = calc_prices_cost(prices, portfolio)
-    print(total_prices_cost, total_portfolio_cost)
+    #print(total_prices_cost, total_portfolio_cost)
     print_gain_loss(total_prices_cost, total_portfolio_cost)
     report = make_report(portfolio, prices)
     print_report(report)
