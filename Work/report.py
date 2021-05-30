@@ -66,31 +66,20 @@ def portfolio_report(portfolio_filename, prices_filename):
     report = make_report(portfolio, prices)
     print_report(report)
 
-def main(args):
+'''def main(args):
     if len(args) != 3:
         raise SystemExit(f'Usage: {sys.argv[0]} ' 'portfile pricefile')
     
     portfolio_report(args[1], args[2])
-    '''def portfolio_report(portfolio_filename, prices_filename):
-        calculates portfolio report from files
-        portfolio = read_portfolio(portfolio_filename)
-        prices = read_prices(prices_filename)
-        total_portfolio_cost = calc_portfolio_cost(portfolio)
-        total_prices_cost = calc_prices_cost(prices, portfolio)
-        #print(total_prices_cost, total_portfolio_cost)
-        print_gain_loss(total_prices_cost, total_portfolio_cost)
-        report = make_report(portfolio, prices)
-        print_report(report)
-
-    portfolio_report('Data/portfolio.csv', 'Data/prices.csv')'''
 
 if __name__ == '__main__':
-    main(sys.argv)
-'''#Header added while completing exercise 2.9 and 2.10 so no need to add separately for exercise 2.11
-print(f'{"Name":>10} {"Shares":>10} {"price":>10} {"Change":>10}')#make this comment to produce exercise 2.9
-print("_"*10, "_"*10, "_"*10, "_"*10)#make this comment to produce exercise 2.9
-for r in report:
-    #print(r) "remove the comment marker from this line to produce exercise 2.9 and remove this statment within double quotation"
-    with_dollar = "$"+str(round(r[2],2))# dollar sign added with r[2] = share price
-    print(f'{r[0]:>10s} {r[1]:>10d} {with_dollar:>10} {r[3]:>10.2f}')#make this comment to produce exercise 2.9'''
+    main(sys.argv)'''
 
+def main():
+    #if len(args) != 3:
+        #raise SystemExit(f'Usage: {sys.argv[0]} ' 'portfile pricefile')
+    
+    portfolio_report(sys.argv[1], sys.argv[2])
+
+if __name__ == '__main__':
+    main()

@@ -2,8 +2,6 @@
 #
 # Exercise 1.27
 import sys
-#import csv
-#import fileparse
 import report
 def portfolio_cost(filename): 
     total_cost = 0           
@@ -18,14 +16,14 @@ def portfolio_cost(filename):
           total_cost = total_cost+ (num_share * share_price)
     return total_cost
 
-def main(args):
-    if len(args)!=2:
+def main():
+    if len(sys.argv)!=2:
         raise SystemExit(f'Usage: {sys.argv[0]} ' 'portfile')
-    cost = portfolio_cost(args[1])
+    cost = portfolio_cost(sys.argv[1])
     print('Total cost:', cost)
 
-if __name__ == 'main':
-    main(sys.argv)
+if __name__ == '__main__':
+    main()
 '''if len(sys.argv) == 2:
     filename = sys.argv[1]
 else:
