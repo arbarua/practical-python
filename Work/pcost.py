@@ -18,11 +18,19 @@ def portfolio_cost(filename):
           total_cost = total_cost+ (num_share * share_price)
     return total_cost
 
-if len(sys.argv) == 2:
+def main(args):
+    if len(args)!=2:
+        raise SystemExit(f'Usage: {sys.argv[0]} ' 'portfile')
+    cost = portfolio_cost(args[1])
+    print('Total cost:', cost)
+
+if __name__ == 'main':
+    main(sys.argv)
+'''if len(sys.argv) == 2:
     filename = sys.argv[1]
 else:
     filename = 'Data/portfolio.csv'
 cost  = portfolio_cost(filename)
-print('Total cost:', cost)
+print('Total cost:', cost)'''
 
 
