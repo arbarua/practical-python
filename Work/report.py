@@ -7,12 +7,14 @@ import sys
 
 def read_portfolio(filename):
     '''reads porfolio file and make a list with the components in the file'''
-    portfolio = fileparse.parse_csv(filename, select = ['name', 'shares', 'price'], types = [str, int, float])
+    with open(filename) as rows:
+        portfolio = fileparse.parse_csv(rows, select = ['name', 'shares', 'price'], types = [str, int, float])
     return portfolio
 
 def read_prices(filename):
     '''reads file containing the prices of the shares and put the components in a dictionary'''
-    prices = dict(fileparse.parse_csv(filename, types = [str, float], has_headers = False))
+    with open(filename) as rows:
+        prices = dict(fileparse.parse_csv(rows, types = [str, float], has_headers = False))
     return prices
 
 def print_report(report_name):
